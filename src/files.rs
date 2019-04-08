@@ -267,7 +267,11 @@ impl Files {
         match self.sort {
             SortBy::Name => self
                 .files
-                .sort_by(|a, b| compare_str(&a.name, &b.name)),
+                .sort_by(|a, b| {
+                    dbg!(&a.name);
+                    dbg!(&b.name);
+                    compare_str(&a.name, &b.name)
+                }),
             SortBy::Size => {
                 self.meta_all_sync().log();
                 self.files.sort_by(|a, b| {
